@@ -41,7 +41,6 @@ defmodule Game do
       get_cell(game, new_x, new_y)
     end)
     
-    
 
   end
 
@@ -60,13 +59,28 @@ defmodule Game do
 
 
   def print_neighbours(game) do
-    Enum.each(0..length(game), fn x -> 
-      Enum.each(0..length(hd(game)), fn y ->
+    Enum.each(0..length(game) - 1, fn x -> 
+      Enum.each(0..length(hd(game)) - 1, fn y ->
         IO.write("#{get_neighbours(game, x, y)} ")
       end)
       IO.puts("")
     end)
   end
 
+
+  def next_generation(game) do
+    Enum.map(0..length(game) - 1, fn x ->
+      Enum.map(0..length(hd(game)) - 1, fn y ->
+        neighbours = get_neighbours(game, x, y)
+
+        if get_cell(game, x, y) do
+          neighbours in [2, 3]
+        else
+          neighbours == 3
+        end
+      end)
+    end)
+
+  end
   
 end

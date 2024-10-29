@@ -16,21 +16,15 @@ defmodule Dgol do
   def hello do
     IO.puts("Initial game:")
 
-    Terminal.clear_screen()
-
-    Game.print_game(Game.get_initial_game())
-    Game.print_neighbours(Game.get_initial_game())
-
-
-    Enum.each(1..100, fn _ ->
-      :timer.sleep(100)
+    Enum.reduce(1..100, Game.get_initial_game(), fn _, game ->
       Terminal.clear_screen()
-      Game.print_game(Game.get_initial_game_alt())
-      Game.print_neighbours(Game.get_initial_game_alt())
+      Game.print_game(game)
+
       :timer.sleep(100)
-      Terminal.clear_screen()
-      Game.print_game(Game.get_initial_game())
-      Game.print_neighbours(Game.get_initial_game())
+
+
+
+      Game.next_generation(game)
     end)
   end
 end

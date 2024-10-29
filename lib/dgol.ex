@@ -19,15 +19,18 @@ defmodule Dgol do
     Terminal.clear_screen()
 
     Game.print_game(Game.get_initial_game())
+    Game.print_neighbours(Game.get_initial_game())
 
 
     Enum.each(1..100, fn _ ->
       :timer.sleep(100)
       Terminal.clear_screen()
       Game.print_game(Game.get_initial_game_alt())
+      Game.print_neighbours(Game.get_initial_game_alt())
       :timer.sleep(100)
       Terminal.clear_screen()
       Game.print_game(Game.get_initial_game())
+      Game.print_neighbours(Game.get_initial_game())
     end)
   end
 end
